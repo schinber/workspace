@@ -62,5 +62,5 @@ class AuthorDetail(models.Model):
 
 # ps：设计完所有表进行命令行：
 # 1：记录python3 manage.py makemigrations
-# 2: 同步数据库： python3 manage.py migrate
+# 2: 同步数据库： python_study manage.py migrate
 # 这样才能创建表

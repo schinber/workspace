@@ -18,7 +18,7 @@
     原文链接：https://blog.csdn.net/weixin_43746433/article/details/90454463
 """
 import pandas as pd
-csv_path = "./Pandas_exercises-master/chipotle.tsv"
+csv_path = "Pandas_exercises-master/chipotle.tsv"
 # 默认是以逗号“，”作为分割符，若是以其它分隔符，比如制表符“/t”，则需要显示的指定分隔符
 chipo = pd.read_csv(csv_path, sep='\t')
 print(chipo.head(10))
