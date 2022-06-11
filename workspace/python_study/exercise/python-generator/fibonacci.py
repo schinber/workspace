@@ -1,4 +1,4 @@
-#!/usr/bin/python_study
+#!/usr/bin/python3
 
 import sys
 
