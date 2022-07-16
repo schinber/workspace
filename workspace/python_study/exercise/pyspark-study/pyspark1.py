@@ -5,8 +5,9 @@ findspark.init()
 from pyspark import SparkConf
 from pyspark.sql import SparkSession
 import traceback
-
-os.environ['JAVA_HOME'] = r"E:\Program Files\Java\jdk1.8.0_131"
+os.environ['PYSPARK_PYTHON'] = r"D:\Python39\python.exe"
+os.environ['HADOOP_HOME'] = r"F:\SPARK\hadoop-3.2.0"
+# os.environ['JAVA_HOME'] = r"E:\Program Files\Java\jdk1.8.0_131"
 appname = "test"  # 任务名称
 # master = "http://192.168.216.130:7077"  # 单机模式设置
 master = "local[*]"  # 单机模式设置
@@ -34,7 +35,7 @@ try:
     counts = words.count()
     print("Number of elements in RDD is %i" % counts)
     sc.stop()
-    print('计算成功！')
+    print('\n 计算成功！')
 except Exception as e:
     print(e)
     sc.stop()
