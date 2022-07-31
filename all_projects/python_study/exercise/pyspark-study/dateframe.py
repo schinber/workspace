@@ -1,11 +1,18 @@
 # coding:utf-8
 
 # 1.连接spark
+import os
+
 import pandas as pd
 import numpy as np
-import findspark
-findspark.init()
+# import findspark
+# findspark.init()
+os.environ['PYSPARK_PYTHON'] = r"D:\Python39\python.exe"
+# os.environ['JAVA_HOME'] = r"E:\Program Files (x86)\Java"
+# os.environ['SPARK_HOME'] = r'F:\SPARK\spark-2.3.2-bin-hadoop2.7'
 from pyspark.sql import SparkSession
+import platform
+# if platform.version() == "3.7.3":
 
 spark = SparkSession.builder.appName('tianxinbo').getOrCreate()
 
