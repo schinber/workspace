@@ -2,7 +2,7 @@ from minio import Minio
 from minio.error import MinioException
 
 
-class MinioOperate():
+class MinioOperate(object):
     def __init__(self):
         self.minio_client = Minio('192.168.43.128:9000',
                                   access_key='root',

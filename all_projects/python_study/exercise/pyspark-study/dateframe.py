@@ -7,13 +7,13 @@ import pandas as pd
 import numpy as np
 # import findspark
 # findspark.init()
-os.environ['PYSPARK_PYTHON'] = r"D:\Python39\python.exe"
+os.environ['PYSPARK_PYTHON'] = r"D:\Python3.9.11\python.exe"
 # os.environ['JAVA_HOME'] = r"E:\Program Files (x86)\Java"
 # os.environ['SPARK_HOME'] = r'F:\SPARK\spark-2.3.2-bin-hadoop2.7'
 from pyspark.sql import SparkSession
 import platform
 # if platform.version() == "3.7.3":
-
+a = [[[[1]]]]
 spark = SparkSession.builder.appName('tianxinbo').getOrCreate()
 
 # 2. 创建dataframe
