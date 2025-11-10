@@ -50,7 +50,8 @@ class Solution:
 
     def permute2(self, nums):
         import itertools
-        return list(itertools.permutations(nums))
+        res = list(itertools.permutations(nums))
+        return res
 
 
 if __name__ == '__main__':
@@ -58,6 +59,6 @@ if __name__ == '__main__':
     nums = [1, 2, 3]
     r = Solution().permute(nums)
     print(r)
-    # r = Solution().permute2(nums)
-    # r2 = [list(x) for x in r]
-    # print(r2)
+    r = Solution().permute2(nums)
+    r2 = [list(x) for x in r]
+    print(r2)

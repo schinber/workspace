@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Teacher Dashboard - Student Management System{% endblock %}
+
+{% block content %}
+<div class="teacher-dashboard">
+    <h2>Teacher Dashboard</h2>
+
+    <div class="section">
+        <h3>Student List</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Student Number</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Major</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.student_number }}</td>
+                    <td>{{ student.gender or '-' }}</td>
+                    <td>{{ student.age or '-' }}</td>
+                    <td>{{ student.major or '-' }}</td>
+                    <td>{{ student.email or '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

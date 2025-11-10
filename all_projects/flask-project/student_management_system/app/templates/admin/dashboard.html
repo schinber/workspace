@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Student Management System{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h2>Admin Dashboard</h2>
+
+    <div class="stats">
+        <div class="stat-card">
+            <h3>Total Students</h3>
+            <p>{{ total_students }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Total Teachers</h3>
+            <p>{{ total_teachers }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Total Users</h3>
+            <p>{{ total_users }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

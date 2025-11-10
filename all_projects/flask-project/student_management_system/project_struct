@@ -1,0 +1,24 @@
+student_management_system/
+│
+├── app/
+│   ├── __init__.py         # 应用初始化
+│   ├── models.py           # 数据模型定义
+│   ├── routes.py           # 路由和视图函数
+│   ├── static/             # 静态文件
+│   │   └── css/
+│   │       └── style.css   # 样式表
+│   └── templates/          # 模板文件
+│       ├── base.html       # 基础模板
+│       ├── login.html      # 登录页面
+│       ├── admin/          # 管理员页面
+│       │   ├── dashboard.html
+│       │   ├── manage_users.html
+│       │   └── manage_students.html
+│       ├── teacher/        # 教师页面
+│       │   └── dashboard.html
+│       └── student/        # 学生页面
+│           └── profile.html
+│
+├── config.py               # 配置文件
+├── run.py                  # 应用启动入口
+└── requirements.txt        # 依赖包列表

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile - Student Management System{% endblock %}
+
+{% block content %}
+<div class="student-profile">
+    <h2>My Profile</h2>
+
+    <div class="profile-card">
+        <div class="profile-info">
+            <p><strong>Name:</strong> {{ student.name }}</p>
+            <p><strong>Student Number:</strong> {{ student.student_number }}</p>
+            <p><strong>Gender:</strong> {{ student.gender or 'Not specified' }}</p>
+            <p><strong>Age:</strong> {{ student.age or 'Not specified' }}</p>
+            <p><strong>Major:</strong> {{ student.major or 'Not specified' }}</p>
+            <p><strong>Email:</strong> {{ student.email or 'Not specified' }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

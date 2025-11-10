@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Students - Student Management System{% endblock %}
+
+{% block content %}
+<div class="manage-students">
+    <h2>Manage Students</h2>
+    <!-- 新增：批量导入区域 -->
+    <div class="section">
+        <h3>批量导入学生（Excel）</h3>
+        <form method="POST" enctype="multipart/form-data" class="form">
+            <input type="hidden" name="action" value="batch_import">
+            <div class="form-group">
+                <label>Excel文件要求：</label>
+                <ul style="margin: 10px 0;">
+                    <li>格式：.xlsx（Excel 2007+）</li>
+                    <li>必需列：姓名、学号、用户名、密码</li>
+                    <li>可选列：性别、年龄、专业、邮箱</li>
+                    <li>第一行为表头，从第二行开始为数据</li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <label for="excel_file">选择Excel文件</label>
+                <input type="file" id="excel_file" name="excel_file" accept=".xlsx" required>
+            </div>
+            <button type="submit" class="btn">批量导入</button>
+        </form>
+    </div>
+    <div class="section">
+        <h3>Add New Student</h3>
+        <form method="POST" class="form">
+            <input type="hidden" name="action" value="add">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="student_number">Student Number</label>
+                    <input type="text" id="student_number" name="student_number" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender">
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="major">Major</label>
+                    <input type="text" id="major" name="major">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+            </div>
+            <button type="submit" class="btn">Add Student</button>
+        </form>
+    </div>
+
+    <div class="section">
+        <h3>Existing Students</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Student Number</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Major</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.student_number }}</td>
+                    <td>{{ student.gender or '-' }}</td>
+                    <td>{{ student.age or '-' }}</td>
+                    <td>{{ student.major or '-' }}</td>
+                    <td>{{ student.email or '-' }}</td>
+                    <td>
+                        <button class="btn btn-edit" onclick="toggleEditForm({{ student.id }})">Edit</button>
+                        <form method="POST" class="inline-form">
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="student_id" value="{{ student.id }}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr id="edit-form-{{ student.id }}" class="edit-form hidden">
+                    <td colspan="8">
+                        <form method="POST" class="form">
+                            <input type="hidden" name="action" value="edit">
+                            <input type="hidden" name="student_id" value="{{ student.id }}">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name-{{ student.id }}">Name</label>
+                                    <input type="text" id="name-{{ student.id }}" name="name" value="{{ student.name }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="student_number-{{ student.id }}">Student Number</label>
+                                    <input type="text" id="student_number-{{ student.id }}" name="student_number" value="{{ student.student_number }}" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="gender-{{ student.id }}">Gender</label>
+                                    <select id="gender-{{ student.id }}" name="gender">
+                                        <option value="">Select</option>
+                                        <option value="Male" {% if student.gender == 'Male' %}selected{% endif %}>Male</option>
+                                        <option value="Female" {% if student.gender == 'Female' %}selected{% endif %}>Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="age-{{ student.id }}">Age</label>
+                                    <input type="number" id="age-{{ student.id }}" name="age" value="{{ student.age or '' }}">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="major-{{ student.id }}">Major</label>
+                                    <input type="text" id="major-{{ student.id }}" name="major" value="{{ student.major or '' }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email-{{ student.id }}">Email</label>
+                                    <input type="email" id="email-{{ student.id }}" name="email" value="{{ student.email or '' }}">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn">Save Changes</button>
+                            <button type="button" class="btn btn-secondary" onclick="toggleEditForm({{ student.id }})">Cancel</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+function toggleEditForm(studentId) {
+    const formId = `edit-form-${studentId}`;
+    const formElement = document.getElementById(formId);
+    formElement.classList.toggle('hidden');
+}
+</script>
+{% endblock %}
