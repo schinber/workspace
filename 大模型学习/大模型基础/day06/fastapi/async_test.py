@@ -18,11 +18,12 @@ async def main():
     task1 = asyncio.create_task(order_food("披萨"))
     task2 = asyncio.create_task(order_food("汉堡"))
 
-
     print("下单完成，可以先刷会儿抖音...")
     food1 = await task1
-    food2 = await task2
 
+    # 如果这里不加 await task2，程序内容为： <Task finished name='Task-3' coro=<order_food() done, defined at F:\Python\workspace\大模型学习\大模型基础\day06\fastapi\async_test.py:6> result='汉堡'>
+    food2 = await task2
+    # 上一行如果不加await,则打印 吃到 披萨 和 <Task finished name='Task-3' coro=<order_food() done, defined at F:\Python\workspace\大模型学习\大模型基础\day06\fastapi\async_test.py:6> result='汉堡'> 了！
     print(f"吃到 {food1} 和 {food2} 了！")
     end = time.time()
     print(f"总共花费 {end - start:.2f} 秒")

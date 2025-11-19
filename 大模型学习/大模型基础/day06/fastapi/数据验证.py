@@ -12,6 +12,7 @@ class User(BaseModel):
 
 external_data = {
     "id": "123",
+    "name": "张三", # 这里不写的话，可以使用默认值
     "signup_ts": "2017-06-01 12:22",
     "friends": [1, "2", b"3"],
 }
@@ -21,3 +22,4 @@ print(user)
 # > User id=123 name='John Doe' signup_ts=datetime.datetime(2017, 6, 1, 12, 22) friends=[1, 2, 3]
 print(user.id)
 # > 123
+print(user.name)
