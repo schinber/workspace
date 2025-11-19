@@ -53,6 +53,21 @@ class Solution:
         res = list(itertools.permutations(nums))
         return res
 
+def decompose_prime_factors(n):
+    original_n = n
+    factors = []
+    divisor = 2
+    while n > 1:
+        while n % divisor == 0:
+            factors.append(divisor)
+            n //= divisor
+        divisor += 1
+    result_str = f"{original_n}="
+    if not factors:
+        result_str += str(original_n)
+    else:
+        result_str += "*".join(str(factor) for factor in factors)
+    print(result_str)
 
 if __name__ == '__main__':
     nums = [0, 1]
@@ -62,3 +77,4 @@ if __name__ == '__main__':
     r = Solution().permute2(nums)
     r2 = [list(x) for x in r]
     print(r2)
+    decompose_prime_factors(120)

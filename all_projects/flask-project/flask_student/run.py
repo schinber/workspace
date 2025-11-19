@@ -12,6 +12,16 @@ from app.views import update_user
 app = Flask(__name__)
 
 
+@app.errorhandler(404)
+def not_found_error(error):
+    return 'This page does not exist', 404
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    return 'Internal server error', 500
+
+
 @app.route('/add_user', methods=['POST'])
 def add_user():
     # 解析POST请求中的JSON数据
